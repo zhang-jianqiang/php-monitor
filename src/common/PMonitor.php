@@ -102,6 +102,16 @@ class PMonitor{
             }
         } else if(function_exists('xhprof_enable')){
             $data['profile'] = xhprof_disable();
+            $data['sql'] = [];
+            foreach ($data['profile'] as $k => $v) {
+                $items = explode('#', $k);
+                if (count($items) == 2) {
+                    $data['sql'][] = [
+                        'time' => $v['wt'],
+                        'sql' => $items[1]
+                    ];
+                }
+            }
         }else{
             throw new \Exception("Please check the extension name in config/config.default.php \r\n,you can use the 'php -m' command.", 1);
         }

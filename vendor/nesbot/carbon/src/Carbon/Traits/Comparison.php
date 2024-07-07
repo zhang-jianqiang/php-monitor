@@ -996,7 +996,7 @@ trait Comparison
 
         if (preg_match('/^(?:Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|September|Oct|October|Nov|November|Dec|December)$/i', $tester)) {
             return $this->isSameMonth(
-                $this->transmitFactory(function() {
+                $this->transmitFactory(function() use($tester) {
                     return static::parse($tester);
                 }),
                 false,
