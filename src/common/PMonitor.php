@@ -104,7 +104,7 @@ class PMonitor{
             $data['profile'] = xhprof_disable();
             $data['sql'] = [];
             foreach ($data['profile'] as $k => $v) {
-                $items = explode('#', $k);
+                $items = explode('execute#', $k);
                 if (count($items) == 2) {
                     $data['sql'][] = [
                         'time' => $v['wt'],
